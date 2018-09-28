@@ -37,3 +37,32 @@ public boolean isValid(String s) {
         return stack.isEmpty();
     }
 ```
+[21 Merge Two Sorted Lists] [Easy]使用 dummy✅
+public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+        ListNode dummy = new ListNode(0);
+        dummy.next = merge(l1,l2);
+        return dummy.next;
+    }
+    
+    public ListNode merge(ListNode p, ListNode q){
+        ListNode dummy = new ListNode(0);
+        ListNode cur = dummy;
+        while(p != null && q != null){
+            if(p.val <= q.val){
+                cur.next = new ListNode(p.val);
+                p = p.next;
+                cur = cur.next;
+            }else{
+                cur.next = new ListNode(q.val);
+                q = q.next;
+                cur = cur.next;
+            }
+        }
+        if(p == null){
+            cur.next = q;
+        }else{
+            cur.next = p;
+        }
+        return dummy.next;
+    }
+```
