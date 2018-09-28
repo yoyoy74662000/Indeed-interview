@@ -38,9 +38,47 @@ public boolean isValid(String s) {
     }
 ```
 [21 Merge Two Sorted Lists] [Easy]使用 dummy✅
+```java
 public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
         ListNode dummy = new ListNode(0);
         dummy.next = merge(l1,l2);
+        return dummy.next;
+    }
+    
+    public ListNode merge(ListNode p, ListNode q){
+        ListNode dummy = new ListNode(0);
+        ListNode cur = dummy;
+        while(p != null && q != null){
+            if(p.val <= q.val){
+                cur.next = new ListNode(p.val);
+                p = p.next;
+                cur = cur.next;
+            }else{
+                cur.next = new ListNode(q.val);
+                q = q.next;
+                cur = cur.next;
+            }
+        }
+        if(p == null){
+            cur.next = q;
+        }else{
+            cur.next = p;
+        }
+        return dummy.next;
+    }
+```
+[23 Merge k Sorted Lists] [Hard]使用 dummy✅
+```java
+public ListNode mergeKLists(ListNode[] lists) {
+        if(lists == null) return null;
+        int len = lists.length;
+        if(len == 0) return null;
+        ListNode dummy = new ListNode(0);
+        ListNode cur = dummy;
+        dummy.next = lists[0];
+        for(int i = 1; i < len; i++){
+            cur.next = merge(dummy.next, lists[i]);
+        }
         return dummy.next;
     }
     
