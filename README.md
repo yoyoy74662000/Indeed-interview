@@ -1,7 +1,7 @@
 # Indeed-interview
 Java, Algorithm
 
-[1 twosum] [38.8%	Easy]使用 HashMap✅
+[1 twosum] [Easy]使用 HashMap✅
 ```java
  public int[] twoSum(int[] nums, int target) {
         if(nums == null || nums.length == 0) return null;
@@ -17,4 +17,23 @@ Java, Algorithm
         }
         return res;
  }
+```
+[20 Valid Parentheses] [Easy]使用 Stack✅
+```java
+public boolean isValid(String s) {
+        Stack<Character> stack = new Stack<>();
+        for(Character ch : s.toCharArray()){
+            if(ch == '('){
+                stack.push(')');
+            }else if(ch == '['){
+                stack.push(']');
+            }else if(ch == '{'){
+                stack.push('}');
+            }else if(stack.isEmpty() || stack.pop() != ch){
+                return false;
+            }
+            
+        }
+        return stack.isEmpty();
+    }
 ```
