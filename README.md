@@ -261,3 +261,26 @@ public int shortestWordDistance(String[] words, String word1, String word2) {
         return res;
     }
 ```
+[346 Moving Average from Data Stream] [Easy] Queue ✅
+```java
+private double previousSum = 0.0;
+    private int maxSize;
+    private Queue<Integer> currentWindow;
+    /** Initialize your data structure here. */
+    public MovingAverage(int size) {
+        currentWindow = new LinkedList<Integer>();
+        maxSize = size;
+    }
+    
+    public double next(int val) {
+        if(currentWindow.size() == maxSize){
+            previousSum -= currentWindow.remove();
+            previousSum += val;
+            currentWindow.add(val);
+        } else{
+            previousSum += val;
+            currentWindow.add(val);
+        }
+        return previousSum / currentWindow.size();
+    }
+```
