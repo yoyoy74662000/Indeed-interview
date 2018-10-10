@@ -389,3 +389,40 @@ public List<String> subdomainVisits(String[] cpdomains) {
     }
 
 ```
+[1 twosum] [Easy]使用 HashMap✅
+```java
+public static void main(String[] args) {
+		ReverseStringButHtml sol = new ReverseStringButHtml();
+		String s = "3&TWD;2&J";
+		System.out.println(sol.reverseHtml(s));
+	}
+ public String reverseHtml(String html) {
+		if (html == null || html.length() == 0) {
+			return null;
+		}
+		int len = html.length();
+		char[] chArr = html.toCharArray();
+		swap(chArr, 0, len - 1);
+		int start = 0;
+		int end = 0;
+		while (end < len) {
+			if (chArr[end] == ';') {
+				start = end;
+			} else if (chArr[end] == '&') {
+				if (chArr[start] == ';')
+					swap(chArr, start, end);
+				start = end + 1;
+			}
+			end++;
+
+		}
+		return new String(chArr);
+	}
+ private void swap(char[] chars, int start, int end) {
+		while (start < end) {
+			char temp = chars[start];
+			chars[start++] = chars[end];
+			chars[end--] = temp;
+		}
+	}
+```
